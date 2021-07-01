@@ -4,12 +4,16 @@
 #include <String>
 #include <ctime>
 using namespace std;
-#define LINES 4
-#define COLUMNS 4
+#define LINES 3
+#define COLUMNS 3
 
 class ContadorInstrucao {
+private:
+    //int matrix[LINES][COLUMNS];
+    //int matrix[4][4] = {{1,2,3,4}, {1,1,6,1}, {9,10,11,12}, {13,14,15,16}};
+
 public:
     static int SOMATORIO;
-
+    //int numGenerator(int randomMatrix[][COLUMNS]);
 };
 #endif
