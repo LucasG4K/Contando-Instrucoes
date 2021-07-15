@@ -4,8 +4,8 @@
 #include <String>
 #include <ctime>
 using namespace std;
-#define LINES 3
-#define COLUMNS 3
+#define LINES 7
+#define COLUMNS 7
 
 class ContadorInstrucao {
 private:
