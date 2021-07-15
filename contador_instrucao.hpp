@@ -9,11 +9,14 @@ using namespace std;
 
 class ContadorInstrucao {
 private:
-    //int matrix[LINES][COLUMNS];
-    //int matrix[4][4] = {{1,2,3,4}, {1,1,6,1}, {9,10,11,12}, {13,14,15,16}};
+    static int SOMATORIO;
 
 public:
-    static int SOMATORIO;
-    //int numGenerator(int randomMatrix[][COLUMNS]);
+    int numGenerator(int randomMatrix[][COLUMNS]);
+    void runner(int randomMatrix[][COLUMNS]);
+    void print(int randomMatrix[][COLUMNS]);
+    int getSomatorio();
+    
+    
 };
 #endif
