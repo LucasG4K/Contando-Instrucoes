@@ -9,14 +9,12 @@ using namespace std;
 
 class ContadorInstrucao {
 private:
-    static int SOMATORIO;
+    static int AMOUNT;
 
 public:
     int numGenerator(int randomMatrix[][COLUMNS]);
     void runner(int randomMatrix[][COLUMNS]);
     void print(int randomMatrix[][COLUMNS]);
-    int getSomatorio();
-    
-    
+    int getSum();
 };
 #endif
