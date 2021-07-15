@@ -13,7 +13,7 @@ int numGenerator(int randomMatrix[][COLUMNS]) {
 
 
 void runner(int matrix[][COLUMNS]) {
-    int aux = 0; //auxiliar de coluna => pega valor anterior de j
+    int temp = 0; //auxiliar de coluna => pega valor anterior de j
     int counter = 0;
     int* direita;
     int* esquerda;
@@ -21,7 +21,7 @@ void runner(int matrix[][COLUMNS]) {
     int* atual;
 
     for (int i = 0; i < LINES; i++) {
-        cout << endl;
+        //cout << endl;
         for (int j = 0; j < COLUMNS; j++) {
 
             direita = &matrix[i][j + 1];
@@ -36,18 +36,23 @@ void runner(int matrix[][COLUMNS]) {
                     counter += *atual;
                     *atual = -1; //-> add por ultimo
                     i++;
+                    temp = j;
+                    j = temp - 1;
+                    cout << "i: " << i << " - j: " << j << endl;
                 }
                 else if (*direita > *baixo && j < COLUMNS - 1) { //se baixo < direita => direita
                     cout << "if1.2 matriz: [" << i << "]" << "[" << j << "] = " << *atual << endl;
                     counter += *atual;
-                    *atual = -1; //-> add por ultimo
+                    *atual = -1; //-> add por 
+                    cout << "i: " << i << " - j: " << j << endl;
 
                 } else if (j == COLUMNS - 1) { //se j = max => desce e j = maximo
-                    counter += *baixo;
+                    counter += *atual;
                     cout << "if1.3 matriz matriz: [" << i << "]" << "[" << j << "] = " << *atual << endl;
-                    *baixo = -1; //-> add por ultimo
+                    *atual = -1; //-> add por ultimo
                     i++;
-                    j = COLUMNS - 1;
+                    temp = j;
+                    j = temp - 1;
                     cout << "i: " << i << " - j: " << j << endl;
                 }
             }
@@ -58,57 +63,67 @@ void runner(int matrix[][COLUMNS]) {
                 if (j == 0) { //se coluna = 0
                     if (*direita < *baixo) { //se direita < baixo => baixo
                         cout << "if2.1 matriz: [" << i << "]" << "[" << j << "] = " << *atual << endl;
-                        counter += *baixo;
-                        *baixo = -1; //-> add por ultimo
+                        counter += *atual;
+                        *atual = -1; //-> add por ultimo
                         i++;
+                        temp = j;
+                        j = temp - 1;
                     }
-                    if (*baixo < *direita) { //se direita < baixo => baixo
+                    if (*baixo < *direita) { //se direita > baixo => direita
                         cout << "if2.2 matriz: [" << i << "]" << "[" << j << "] = " << *atual << endl;
-                        counter += *direita;
-                        *direita = -1; //-> add por ultimo
+                        counter += *atual;
+                        *atual = -1; //-> add por ultimo
                     }
                 }
                 else if (j == COLUMNS - 1) { //se coluna = max
                     if(*esquerda > *baixo) { //se esquerda > baixo => esquerda
                         cout << "if2.3 matriz: [" << i << "]" << "[" << j << "] = " << *atual << endl;
-                        counter += *esquerda;
-                        *esquerda = -1; //-> add por ultimo
+                        counter += *atual;
+                        *atual = -1; //-> add por ultimo
+                        temp = j;
+                        j = temp - 2;
                     } else if (*baixo > *esquerda) { //se baixo > esquerda => baixo
                         cout << "if2.4 matriz: [" << i << "]" << "[" << j << "] = " << *atual << endl;
-                        counter += *baixo;
-                        *baixo = -1; //-> add por ultimo
-                        j = COLUMNS - 1;
+                        counter += *atual;
+                        *atual = -1; //-> add por ultimo
+                        i++;
+                        temp = j;
+                        j = temp - 1;
                     }
                 }
                 else if (j > 0 && j < COLUMNS - 1) {
                     if (*direita < *baixo && *baixo > *esquerda) { //se direita < baixo e baixo > esquerda  => baixo
                         cout << "if2.5 matriz: [" << i << "]" << "[" << j << "] = " << *atual << endl;
-                        counter += *baixo;
-                        *baixo = -1; //-> add por ultimo
+                        counter += *atual;
+                        *atual = -1; //-> add por ultimo
                         i++;
+                        temp = j;
+                        j = temp - 1;
                     }
                     else if (*baixo < *direita && *direita > *esquerda) { //se baixo < direita e direita > esquerda => direita
-                        counter += *atual;
                         cout << "if2.6 matriz: [" << i << "]" << "[" << j << "] = " << *atual << endl;
+                        counter += *atual;
                         *atual = -1; //-> add por ultimo
                     }
                     else if (*direita < *esquerda && *esquerda > *baixo) { //se direita < esquerda e esquerda > baixo => esquerda
-                        counter += *esquerda;
                         cout << "if2.7 matriz: [" << i << "]" << "[" << j << "] = " << *atual << endl;
-                        *esquerda = -1; //-> add por ultimo
+                        counter += *atual;
+                        *atual = -1; //-> add por ultimo
+                        temp = j;
+                        j = temp - 2;
                     }
                 }
             }
 
             else if (i == LINES - 1) {
                 if (j < COLUMNS - 1) {
-                    counter += *direita;
                     cout << "if3.1 matriz: [" << i << "]" << "[" << j << "] = " << *atual<< endl;
-                    *direita = -1; //-> add por ultimo
+                    counter += *atual;
+                    *atual = -1; //-> add por ultimo
                 }
                 else {
-                    counter += *atual;
                     cout << "if3.2 matriz: [" << i << "]" << "[" << j << "] = " << *atual << endl;
+                    counter += *atual;
                     *atual = -1; //-> add por ultimo
                 }
             }
@@ -126,20 +141,20 @@ void runner(int matrix[][COLUMNS]) {
         //     //else cout << "Matriz nao e' capaz de ser percorrida conforme a regra" << endl;
         }
     }
-    cout << endl << "Total do caminho = " << counter;
+    cout << endl << "Total do caminho = " << counter << endl;
 }
 
 
 
 
 void print(int randomMatrix[][COLUMNS]) {
-    cout << endl;
     for (int i = 0; i < LINES; i++) {
         for (int j = 0; j < COLUMNS; j++) {
             printf("%2.d  ", randomMatrix[i][j]);
         }
         cout << endl;
     }
+    cout << endl;
 }
 
 int main() {
