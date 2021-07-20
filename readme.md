@@ -40,6 +40,9 @@ Tendo isso em mente, foi proposto em aula que desenvolvessemos um algoritmo que 
 
 Para isso, o algoritmo foi construído em C++, utilizando o sistema operacional Windows 10 versão 20H2. A compilação pode ser feita por meio do seguinte comando: "g++ main.cpp contador_instrucao.cpp -o run" e em seguida executado usando o comando "run".
 
+**Pequenas observações:** na execução do código, os valores percorridos poderão ser visualizados como -1;
+Vale ressaltar que em caso de empate nos valores analisados entre baixo e direita, o caminho escolhido será para baixo. Analogamente, em casos de empate entre os valores analisados para direita e esquerda, o caminho escolhido será o da direita.
+
 
 ### Qual o custo computacional do algoritmo desenvolvido?
 
@@ -74,14 +77,14 @@ Com a função 'print' em nosso código (linha 91 - contador_instrucao.cpp) pode
 
     for (int i = 0; i < LINES; i++) { //2n + 2
         for (int j = 0; j < COLUMNS; j++) { 2n² + 2n
-            if (randomMatrix[i][j] == 0) printf(" 0  ");
-            else printf("%2.d  ", randomMatrix[i][j]);
-        } cout << endl; 
-    } cout << endl;
+            if (randomMatrix[i][j] == 0) printf(" 0  "); //n²
+            else printf("%2.d  ", randomMatrix[i][j]); //n²
+        } cout << endl; //n²
+    } cout << endl; //n
 
-Semelhante a análise anterior, fazemos novamente 2 laçoes de repetições para tratar linhas e colunas, e com isso já podemos imprimir os valores respeitando as duas validações impostas acima. Essas validações são com referência ao valor 0, que não era exibido nas ocorrências. Sendo assim a soma dos dois laços de repetição, como visto anteriormente, resulta em 2n² + 4n. Referente ao if e ao else, o custo pode ser descrito como n², em caso de não precisar de uma segunda verificação (else). Caso a segunda verificação seja necessária temos, 2n² e portanto adotaremos o valor médio 1.5n².
+Semelhante a análise anterior, fazemos novamente 2 laços de repetições para tratar linhas e colunas, e com isso já podemos imprimir os valores respeitando as duas validações impostas acima. Essas validações são com referência ao valor 0, que não era exibido nas ocorrências. Sendo assim a soma dos dois laços de repetição, como visto anteriormente, resulta em 2n² + 4n. Referente ao if e ao else, o custo pode ser descrito como n², em caso de não precisar de uma segunda verificação (else). Caso a segunda verificação seja necessária temos, 2n² e portanto adotaremos o valor médio 1.5n².
 
-Portanto, o custo dessa função é: **3.5n² + 4n**
+Portanto, o custo dessa função é: **3.5n² + 5n**
 
 
 - **Para percorrer e verificar a matriz gerada**
@@ -187,7 +190,7 @@ Sabendo que todos os 3 IFs anteriores serão percorridos em algum momento, todos
 
 Sendo assim, somando os custos assintóticos de cada função apresentada acima, chegamos ao seguinte resultado: 
 
-3n² + 4n + 3.5n² + 4n + 5n² + 14n² + 3n² = 28.5n² + 8n
+3n² + 4n + 3.5n² + 5n + 5n² + 14n² + 3n² = 28.5n² + 9n
 
 Porém, por n² ser o elemento de maior peso durante os cálculos realizados, podemos definir que o custo computacional para esse algoritmo é de aproximadamente 28.5n².
 
