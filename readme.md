@@ -180,27 +180,27 @@ A partir daqui, entramos especificamente nas validações de matrizes que també
 
     Esse é o pior caso na análise do algoritmo
 
-        else if (i == LINES - 1) { //n² * 3 linhas
+        else if (i == LINES - 1) { //n² * 3 linhas ÷ 2 
             AMOUNT += *current;
             *current = -1;
         }
 
     Por se tratar da última linha do algoritmo, ela é percorrida no máximo n vezes de forma que são deslocadas as colunas até chegar ao fim NxN.
 
-    Caso médio do terceiro IF : 3n
+    Caso médio do terceiro IF : 3n ÷ 2 = 1.5n
 
 
 - **Resultado total final**
 
 Sabendo que todos os 3 IFs anteriores serão percorridos em algum momento, todos eles devem ser considerados.
 
-Para isso, também será considerado o caso médio entre os 3, fazendo a seguinte conta: (14n² + 5n + 3n) ÷ 3 = 5² + 2.5n
+Para isso, também será considerado o caso médio entre os 3, fazendo a seguinte conta: (14n² + 5n + 1.5n) ÷ 3 = 5² + 2n
 
 Sendo assim, somando os custos assintóticos de cada função apresentada acima, chegamos ao seguinte resultado: 
 
-3n² + 4n + 3.5n² + 5n + 5² + 2.5n = 11.5n² + 11.5n
+3n² + 4n + 3.5n² + 5n + 5² + 2n = 11.5n² + 11n
 
-Porém, por n² ser o elemento de maior peso durante os cálculos realizados, podemos definir que o custo computacional para esse algoritmo é de aproximadamente 28.5n².
+Porém, por n² ser o elemento de maior peso durante os cálculos realizados, podemos definir que o custo computacional para esse algoritmo é de aproximadamente 11.5n².
 
 
 ### Há mais de uma maneira de resolver esse problema?
