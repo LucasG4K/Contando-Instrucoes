@@ -118,7 +118,7 @@ A partir daqui, entramos especificamente nas validações de matrizes que també
 
     Esse é o melhor caso na análise do algoritmo e é responsável por analisar a primeira linha da matriz. Em seu interior, são analisadas cada coluna referente a linha situada e após a 'decisão' do caminho, é feito o incremento do valor total e seu deslocamento para baixo ou para a direita.
 
-        if (i == 0) { // caso médio: n² × 5 linhas (else está oculto)
+        if (i == 0) { // caso médio: n × 5 linhas (else está oculto)
             if (*right <= *down || j == COLUMNS - 1) {
                 i++; 
                 j = j - 1;
@@ -127,7 +127,9 @@ A partir daqui, entramos especificamente nas validações de matrizes que també
             *current = -1;
         }
     
-    Caso médio do primeiro IF : n² × 5 = 5n²
+    Por se tratar da primeira linha do algoritmo, ela é percorrida no máximo n vezes de forma que são analisadasadas apenas as colunas.
+
+    Caso médio do primeiro IF : n × 5 = 5n
 
 2. Segundo IF
 
@@ -166,6 +168,8 @@ A partir daqui, entramos especificamente nas validações de matrizes que també
             }
         }
 
+    Por se tratar das linhas intermediárias as análises são feitas linha a a linhas e colunas a colunas, tirando somente a primeira e última linha.
+
     Caso médio do segundo IF : 7n² + 7n²  = 14n²
 
 
@@ -181,16 +185,20 @@ A partir daqui, entramos especificamente nas validações de matrizes que també
             *current = -1;
         }
 
-    Caso médio do terceiro IF : 3n²
+    Por se tratar da última linha do algoritmo, ela é percorrida no máximo n vezes de forma que são deslocadas as colunas até chegar ao fim NxN.
+
+    Caso médio do terceiro IF : 3n
 
 
 - **Resultado total final**
 
 Sabendo que todos os 3 IFs anteriores serão percorridos em algum momento, todos eles devem ser considerados.
 
+Para isso, também será considerado o caso médio entre os 3, fazendo a seguinte conta: (14n² + 5n + 3n) ÷ 3 = 5² + 2.5n
+
 Sendo assim, somando os custos assintóticos de cada função apresentada acima, chegamos ao seguinte resultado: 
 
-3n² + 4n + 3.5n² + 5n + 5n² + 14n² + 3n² = 28.5n² + 9n
+3n² + 4n + 3.5n² + 5n + 5² + 2.5n = 11.5n² + 11.5n
 
 Porém, por n² ser o elemento de maior peso durante os cálculos realizados, podemos definir que o custo computacional para esse algoritmo é de aproximadamente 28.5n².
 
